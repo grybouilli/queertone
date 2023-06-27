@@ -1,0 +1,6 @@
+[submodule "flext"]
+	path = flext
+	url = git@github.com:grybouilli/flext.git
+[submodule "pd-lib-builder"]
+	path = pd-lib-builder
+	url = git@github.com:pure-data/pd-lib-builder.git
