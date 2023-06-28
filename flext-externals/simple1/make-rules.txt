@@ -1,0 +1,34 @@
+// Builds object files
+g++ -c  -ffast-math -DFLEXT_USE_CMEM -O3 -mtune=native  -I/usr/include/pd -pthread -fPIC -fvisibility-inlines-hidden -DNDEBUG -DFLEXT_SYS=2 -DPD -I/usr/local/pd/src -I/usr/local/pd/include -I/usr/local/pd/include/pd -I/usr/local/include/stk -I/usr/local/include/sndobj -I/usr/local/include/flext main.cpp -o main.opp
+
+g++ -c  -ffast-math -DFLEXT_USE_CMEM -O3 -mtune=native  -I/usr/include/pd -pthread -fPIC -fvisibility-inlines-hidden -DNDEBUG -DFLEXT_SYS=2 -DPD -I/usr/local/pd/src -I/usr/local/pd/include -I/usr/local/pd/include/pd -I/usr/local/include/stk -I/usr/local/include/sndobj -I/usr/local/include/flext main.cpp -o main.opp
+
+// include files options
+-I/usr/include/pd
+-I/usr/local/pd/src 
+-I/usr/local/pd/include 
+-I/usr/local/pd/include/pd 
+-I/usr/local/include/stk 
+-I/usr/local/include/sndobj 
+-I/usr/local/include/flext
+
+// optmizers
+-ffast-math
+-O3
+
+// preprocessors
+-DFLEXT_USE_CMEM
+-DNDEBUG 
+-DFLEXT_SYS=2 
+-DPD
+
+// libs 
+-pthread
+
+
+// Builds lib file / pd external
+g++ -L/usr/lib -pthread -shared  -Wl,-S -L/usr/local/pd/bin -L/usr/local/lib -o simple1.pd_linux main.opp  -lflext-pd_s
+
+
+chmod 755 pd-linux/release-single/simple1.pd_linux
+strip --strip-unneeded pd-linux/release-single/simple1.pd_linux
