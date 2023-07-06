@@ -11,7 +11,7 @@ set(HDR_DIR "hdr")
 add_library(objects OBJECT ${SRC_DIR}/*.cpp)
 
 # object flext compile options
-target_compile_options(objects PRIVATE -DFLEXT_USE_CMEM -DNDEBUG -DFLEXT_SYS=2 -DPD -ffast-math -O3 -mtune=native -fPIC -fvisibility-inlines-hidden -pthread)
+target_compile_options(objects PRIVATE -DFLEXT_USE_CMEM -DNDEBUG -DFLEXT_SHARED -DFLEXT_SYS=2 -DPD -ffast-math -O3 -mtune=native -fPIC -fvisibility-inlines-hidden -pthread)
 
 # include directories from flext build command line
 target_include_directories(objects PRIVATE /usr/local/pd/src)
@@ -28,12 +28,14 @@ add_library(${PROJECT_NAME} SHARED
 # lib flext compile options
 target_compile_options(${PROJECT_NAME} PRIVATE -Wl,-S)
 
+target_link_directories(${PROJECT_NAME} PRIVATE /usr/local/lib)
+
 target_link_libraries(${PROJECT_NAME} 
                         PRIVATE -L/usr/local/pd/bin 
                         PRIVATE -L/usr/local/lib
                         PRIVATE -L/usr/lib
                         PRIVATE -lpthread
-                        PRIVATE -lflext-pd_s)
+                        PRIVATE -lflext-pd)
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
