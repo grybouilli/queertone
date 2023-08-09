@@ -7,6 +7,3 @@
 [submodule "py"]
 	path = py
 	url = https://github.com/grybouilli/py
-[submodule "nn_tilde"]
-	path = nn_tilde
-	url = https://github.com/acids-ircam/nn_tilde
